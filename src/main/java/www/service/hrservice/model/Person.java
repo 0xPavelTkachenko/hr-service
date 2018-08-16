@@ -37,7 +37,7 @@ public class Person {
     private String patronym;
 
     @JsonView(AccountView.class)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column
     private Date birthday;
 
@@ -70,7 +70,7 @@ public class Person {
     private String about;
 
     @JsonView(View.class)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Europe/Moscow")
     @JsonProperty("received_when")
     @Column(name = "received_when")
     private Date receivedWhen;
@@ -79,12 +79,12 @@ public class Person {
     @JsonIgnoreProperties("people")
     @JsonProperty("created_by")
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "created_by")
+    @JoinColumn(name = "created_by", updatable = false)
     private Account account;
 
     @JsonView(View.class)
     @JsonProperty("created_when")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "created_when", updatable = false)
     private Date createdWhen;
 

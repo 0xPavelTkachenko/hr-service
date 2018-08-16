@@ -19,7 +19,7 @@ public class AuthController {
 
     @PostMapping("/client/")
     public Result isClient(@RequestParam String login, @RequestParam String password) {
-        return new Result(authService.isClient(login, password), null);
+        return new Result(authService.isClient(login, password), authService.getClientId(login, password));
     }
 
 }

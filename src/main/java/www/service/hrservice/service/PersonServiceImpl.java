@@ -58,10 +58,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void update(int id, Person person) throws ObjectNotFoundException, ValidationException {
-        if (person.getAccount() != null && !accountDao.exists(person.getAccount().getId())) {
-            throw new ValidationException(messageSource.getMessage("error.account.notfound", null, Locale.getDefault()));
-        }
-
         if (person.getState() != null && !stateDao.exists(person.getState().getId())) {
             throw new ValidationException(messageSource.getMessage("error.state.notfound", null, Locale.getDefault()));
         }

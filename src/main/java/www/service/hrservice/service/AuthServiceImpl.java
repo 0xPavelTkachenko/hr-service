@@ -39,4 +39,19 @@ public class AuthServiceImpl implements AuthService {
         return passwordEncoder.matches(password, account.getPassword());
     }
 
+    @Override
+    public Integer getClientId(String login, String password) {
+        Account account;
+        try {
+            account = accountDao.findByLogin(login);
+            if (passwordEncoder.matches(password, account.getPassword())) {
+                return account.getId();
+            } else {
+                return null;
+            }
+        } catch (ObjectNotFoundException e) {
+            return null;
+        }
+    }
+
 }

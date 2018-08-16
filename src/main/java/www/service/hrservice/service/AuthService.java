@@ -1,7 +1,5 @@
 package www.service.hrservice.service;
 
-import www.service.hrservice.interceptor.exception.ForbiddenException;
-
 public interface AuthService {
 
     default boolean isAdmin(String key) {
@@ -10,6 +8,10 @@ public interface AuthService {
 
     default boolean isClient(String login, String password) {
         return true;
+    }
+
+    default Integer getClientId(String login, String password) {
+        return null;
     }
 
 }
